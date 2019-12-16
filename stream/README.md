@@ -43,5 +43,5 @@
 ### 문자 스트림 클래스 
 * 문자 스트림 : 유니코드로 된 문자를 입출력하는 스트림
 * Reader/Writer : 문자 스트림을 다루는 모든 클래스의 슈퍼 클래스 
-* InputStreamReader/OutputStreamReader : 바이트를 읽어 문자로 인고팅하여 입력 / 문자를 바이트로 디코딩하여 출력
+* InputStreamReader/OutputStreamReader : 바이트를 읽어 문자로 인코딩하여 입력 / 문자를 바이트로 디코딩하여 출력
 * FileReader/FileWriter : 텍스트 파일에서 문자 데이터 입출력
