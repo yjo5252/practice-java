@@ -1,7 +1,7 @@
-// epper 17_1.java
+ï»¿// epper 17_1.java
 
-/*  ÀÔ·Â: OX °á°ú
-    Ãâ·Â: Á¡¼ö
+/*  ì…ë ¥: OX ê²°ê³¼
+    ì¶œë ¥: ì ìˆ˜
 */
 
 import java.util.Scanner;
