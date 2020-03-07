@@ -1,10 +1,38 @@
 ## Java
 
 ## 1. Java 프로그램의 실행 구조 
-### 1)  환경 변수 
+### 1)  환경 변수, 컴파일러, JVM 
 * 환경변수에 bin 경로를 등록하면 javac.exe(컴파일러)와 java.exe(JVM 구동 명령)가 다른 디렉토리에서도 사용가능
 * Java 컴파일러
-* JVM 
-##### JDK 폴더 안
+* JVM : 실행될때 <b>메인메소드</b>를 제일 처음 찾는다. 
+```java
+// HelloWorld.java
+public static void main(String[] args) {
+    System.out.println("Hello Java World");
+}
+```
+### 2) JDK 폴더 안
 * Javac.exe : 컴파일러 (소스를 기계어로 변환하는 파일)
 * Java.exe : JVM 구동명령
+
+### 3) Java 실행 구조 
+* 소스코드가 <b>컴파일러</b>로 인해 바이트 코드 파일로 바뀌면 .class 확장자로 저장된다. 
+* 바이트 코드 파일이 <b>JVM 구동</b>을 지나 기계어로 저장된다.
+* Link(메모리 로딩/실행준비/실행 결정/초기화)를 거쳐 기계어가 실행된다.
+
+#### *) eclipse 없이 java file 돌리는 법
+
+1) 메모장에 자바 프로그램 작성해서 java > pjt_ex > JavaWorld.java 로 저장한다
+2) cmd 창 open
+3) Java pjt_ex 디렉토리로 이동한다. (cd 명령어) 
+4) 컴파일러로 바이트 코드 파일 생성 (javac.exe JavaWorld.java)
+<br>  ==> 그 결과로 바이트 코드 파일 JavaWorld.class 생성됨
+5) JVM으로 바이트코드 파일을 바꿈 (java.exe JavaWorld.class)
+
+``` prompt
+javac.exe JavaWorld.java
+java JavaWorld 
+
+> (결과)Hello Java World
+```
+
