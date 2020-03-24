@@ -50,3 +50,29 @@ class Solution {
   }
 }
 ``` 
+
+### 3. 완주 
+https://programmers.co.kr/learn/courses/30/lessons/42578
+```java
+import java.util.HashMap;
+import java.util.Iterator;
+class Solution {
+    public int solution(String[][] clothes) {
+        int answer = 1;
+        HashMap <String, Integer> map = new HashMap<>(); // categories <categoreisName, #>
+        for (int i = 0; i < clothes.length; i++) {
+          String categoriesName = clothes[i][1];
+          if(!map.containsKey(categoriesName)){
+            map.put(categoriesName, 1); // 신규 의상종류 1개
+          } else {
+            map.replace(categoriesName,map.get(categoriesName)+1 ); // 기존 의상 종류 1개 추가
+          }
+        }
+        Iterator <Integer> it = map.values().iterator();
+        while(it.hasNext()){
+          answer *= it.next().intValue() + 1;
+        }
+        return answer -1;
+    }
+}
+```
