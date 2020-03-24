@@ -1,5 +1,6 @@
 ## 코딩테스트 연습 > 해시 
-### 1.  문제: 완주하지 못한 선수 https://programmers.co.kr/learn/courses/30/lessons/42576 
+### 1.  문제: 완주하지 못한 선수
+https://programmers.co.kr/learn/courses/30/lessons/42576 
 // 자바 Hash 사용
 ```java
 import java.util.HashMap;
@@ -34,7 +35,8 @@ public class Solution {
 }
 
 ```
-### 2. 전화번호부 목록 https://programmers.co.kr/learn/courses/30/lessons/42577?language=java
+### 2. 전화번호부 목록 
+https://programmers.co.kr/learn/courses/30/lessons/42577
 
 ```java
 class Solution {
