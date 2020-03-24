@@ -76,3 +76,90 @@ class Solution {
     }
 }
 ```
+
+
+
+4. 베스트 앨범 
+```java
+
+import java.util.*;
+class Solution {
+    public int[] solution(String[] genres, Integer[] plays) {
+        // <고유번호, 플레이 횟수> <고유번호, 장르>
+        HashMap <Integer, Integer> playMap = new HashMap<Integer, Integer>();
+        HashMap <Integer, String> genreMap = new HashMap <Integer, String>();
+        for (int i = 0; i < genres.length; i++) {
+          playMap.put(i, plays[i]);
+          genreMap.put(i, genres[i]);
+        }
+
+        // 장르의 종류 뽑는다.
+        HashSet<String> gSet  = new HashSet<String>();
+        for (int i = 0; i < genres.length; i++) {
+          gSet.add(genres[i]);
+        }
+
+        // 장르별 총 플레이 횟수 계산 < 플레이 횟수, 장르> hashmap
+        HashMap<Integer, String> coPlay = new HashMap <Integer, String> ();
+        for (String x: gSet) {
+            int count = 0;
+            for (int i = 0 ; i < genreMap.size(); i++) {
+               if (genreMap.get(i).equals(x)) {
+                  count += playMap.get(i);//?
+              }
+            }
+            coPlay.put(count, x);
+        }
+
+        //★ <플레이 횟수, 장르> hash Map 정렬  TreeMap
+          TreeMap sort = new TreeMap(coPlay);
+        // String 형의 배열에 넣는다
+          String[] sortGenre = new String[gSet.size()];
+          int index = 0;
+          for (Object o : sort.keySet()) {
+              sortGenre[index] = sort.get(o).toString();
+              index++;
+          }
+
+          // 장르별 많이 플레이 된 노래의 <고유번호> 찾기
+          ArrayList<Integer> fIndex = new ArrayList<Integer>();
+          for (int i = sortGenre.length-1; i >= 0; i--){
+             int count = 0;
+             for (int pl: genreMap.keySet()){     // 여기서 오류 난다. int[]를 Integer[]로 변환할 수 없다며;
+                  if (sortGenre[i].equals(genreMap.get(pl))){
+                      count++;
+                    }
+               }
+               int[] temp = new int[count];
+               int k = 0;
+               for (int p2 : genreMap.keySet()){
+                 if (sortGenre[i].equals(genreMap.get(p2))){
+                      temp[k] = playMap.get(p2);  //  <Integer> 고유번호
+                      k++;
+                 }
+               }
+               if (temp.length != 1) {
+                  Arrays.sort(temp);
+               }
+
+               for (int j = temp.length -1; j >= temp.length -2; j--) {
+                 for (int p : playMap.keySet()){
+                   if (temp[j] == playMap.get(p)){
+                      fIndex.add(p); //ArrayList에 key 값 순서대로 추가
+                      playMap.put(p,0);
+                      break;
+                   }
+                 }
+               }
+          }
+           // ArrayList 를 일반 배열로 복사하여 return 한다.
+           int [] answer = new int[fIndex.size()];
+           for (int i = 0 ; i < fIndex.size(); i++){
+              answer[i] = fIndex.get(i);
+           }
+           return answer;
+          }
+
+}
+
+```
