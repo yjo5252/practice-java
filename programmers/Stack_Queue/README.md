@@ -36,11 +36,21 @@ public class Solution {
           int relativeValue = prices[i];
           // 가격이 떨어진 경우 
           if (relativeValue < value) {
-              answer[cursor++] = i-
-          
+              answer[cursor++] = i- (position-1);
+              break;
+          }
+           else if (i == prices.length-1) {
+              answer[cursor++] = i- (position-1);
+              break;
           }
       }
+      // 하나 남은 경우 0을 결과에 추가하고 break 
+      if (position == prices.length){
+        answer[cursor] = 0;      
+        break;
+      }
     }
+    return answer;
   }
 }
 
