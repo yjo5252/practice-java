@@ -21,3 +21,29 @@ LIFO, FIFO, push & pop! 스택과 큐를 이용해서 문제를 풀어보세요
 ## 쇠막대기
 
 ## 주식가격
+
+``` java
+public class Solution {
+  public int[] solution(int[] prices) {
+    int[] answer = new int[prices.length];
+    int cursor = 0; // answer index cursor 
+    
+    int position = 0;
+    while (position < prices.length) {
+      int value = prices[position++];
+      // 남는 리스트에서 비교 
+      for (int i = position; i < prices.length; i++) {
+          int relativeValue = prices[i];
+          // 가격이 떨어진 경우 
+          if (relativeValue < value) {
+              answer[cursor++] = i-
+          
+          }
+      }
+    }
+  }
+}
+
+
+
+```
