@@ -78,5 +78,55 @@ citations	return
 
 ## 코드 
 ### K번째수
+```java
+// case1
+import java.util.*;
+class Solution {
+    public int[] solution(int[] array, int[][] commands) {
+        int[] answer = new int[commands.length] ;
+        int start =0, end = 0, target = 0;
+        int[] temp = {};
+        for (int i=0; i < commands.length; i++){
+            start = commands[i][0]-1;
+            end = commands[i][1];
+            target = commands[i][2]-1;
+            temp = Arrays.copyOfRange(array, start, end);
+            Arrays.sort(temp);
+            answer[i] = temp[target];
+        }
+        
+        
+        return answer;
+    }
+}
+``` 
+
+```java
+//case 2
+import java.util.*;
+class Solution {
+    public int[] solution(int[] array, int[][] commands) {
+        int[] answer = new int[commands.length] ;
+       
+        for (int i=0; i < commands.length; i++){
+            int start = commands[i][0]-1;
+            int end = commands[i][1];
+            int target = commands[i][2]-1;
+            
+            int [] temp = new int[end-start]; //[] 
+            int a = 0;
+            for (int j = start; j < end ; j++) //copyOfRange 대신
+                temp[a++]= array[j];
+           
+            Arrays.sort(temp);
+            answer[i] = temp[target];
+        }
+        
+        
+        return answer;
+    }
+}
+
+```
 ### 가장큰수
 ### H-Index
