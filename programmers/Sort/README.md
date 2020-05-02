@@ -166,3 +166,22 @@ class Solution {
 
 ```
 ### H-Index
+```java
+import java.util.Arrays;
+class Solution {
+    public int solution(int[] citations) {
+        int answer = 0;
+        Arrays.sort(citations);
+        for (int i = citations.length-1; i >=0 ; i--){
+            int cite  = citations[i];
+            int count = citations.length - i;
+            if (count >= cite) {
+                answer = cite; 
+                break;
+            }
+        }
+        
+        return answer;
+    }
+}
+```
