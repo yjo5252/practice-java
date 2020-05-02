@@ -185,3 +185,26 @@ class Solution {
     }
 }
 ```
+```java
+//case 2 
+
+// h번 이상 인용된 논문이 h편 이상인 h의 최대값
+import java.util.Arrays;
+import java.util.Collections;
+
+public class Solution {
+    public int solution(int[] citations) {
+        Integer [] cArr = new Integer[citations.length];
+        for (int i = 0 ; i < citations.length; i++){
+            cArr[i] = citations[i];
+        }
+        Arrays.sort(cArr, Collections.reverseOrder());
+        for (int i = 0; i < citations.length; i++){
+            if (cArr[i] < i+1){
+                return i;
+            }
+        }
+        return citations.length;
+    }
+}
+```
