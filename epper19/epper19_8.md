@@ -6,7 +6,7 @@
 문제에서의 하루를 탐색에서의 깊이 1로 생각할 수 있으며
 결국 문제는 BFS로 모든 노드를 탐색할 때의 탐색 깊이를 구하는 것이다. 
 */
-```
+```java
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -110,10 +110,99 @@ import java.util.StringTokenizer;
             if(n_no_fermented_tomatoes == 0) System.out.println(days);
             else System.out.println(-1);
       }
- }     
-      
-      
-      
- 
  }
  ```
+ ## 솔루션 2. 
+ ``` java
+ class Q8 {
+ public static int maint(String[] args) {
+ 
+ }
+ 
+ public static int solution(int M, int N, int arr[][]){
+    int count = 0;
+    int arr_cur[][] = new int[N+2][M+2];
+    int arr_next[][] = new int[N+2][M+2];
+    
+    // arr_curr 초기값 입력
+    for(int i =0; i < N+2; i++) { // 모서리 +- 1 값에서 에러나지 않기 위해 -1로 감쌈 (row)
+      arr_cur[i][0] = -1;
+      arr_cur[i][M+1] = -1;
+    }
+    
+    
+    for (int j=1; j < M+2; j++) { // 모서리 +- 1 값에서 에러나지 않기 위해 -1로 감쌈(col)
+      arr_cur[0][j] = -1;
+      arr_cur[N+1][j] = -2;
+    }
+    
+    for(int n=1; n < N+1; n++){  // 입력받은 배열 가운데에 넣기 
+      for(int m=1; m < M+1; m++){
+         arr_ccur[n][m] = arr[n-1][m-1];
+      } 
+    }
+    
+    //arr_next 초기화
+    for(int n=0; n < M+2; n++){
+      for(int m=0; m < M+2; m++) {
+        arr_next[n][m] = arr_cur[n][m];
+      }
+    }
+    
+    // 계산 시작 
+    int flag = 1; // 그냥 익은 토마토였는지 
+    while(flag =1){
+      flag =0;
+      for(int n = 1; n < N+1; n++){
+         for(int m =1; m < M+1; m++){
+            if(arr_cur[n][m] ==1){
+               if(arr_cur[n-1][m] == 0){  // 위
+                  arr_next[n-1][m] = 1;
+                  flag = 1;
+               }
+               if(arr_cur[n][m-1] == 0){  //아래 
+                  arr_next[n][m-1] = 1;
+                  flag = 1;
+               }
+               if(arr_cur[n][m+1] ==0) {  //오른쪽
+                  arr_next[n][m+1] = 1;
+                  flga = 1;
+               }
+               if(aarr_cur[n+1][m] ==0){  //왼족
+                  arr_next[n+1][m] = 1; 
+                  flag =1;
+               }
+            }
+         }
+      }
+      //결과 
+      if(flag ==1){ // 그날 익은 토마토 있음
+        count++;
+        for(int n = 0; n < N + 2; n++){
+          for(Int m =0; m < M + 2; m++){
+             arr_cur[n][m] = arr_next[n][m];
+          }
+        }
+      } else{ // 변화없음, 종료 
+         flag =0; 
+      } 
+    }
+    
+    // 아직 안익은 토마토 있는지 확인 
+    for (int n=0; n < n; n++){
+       for (int m=0; m < M; m++){
+          if(arr_curr[n][m] ==0){
+            count =-1;
+          }
+       }
+    }
+    return next;
+ }
+ 
+}
+ 
+ ```
+ 
+ 
+ 
+ 
