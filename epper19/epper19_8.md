@@ -115,8 +115,16 @@ import java.util.StringTokenizer;
  ## 솔루션 2. 
  ``` java
  class Q8 {
- public static int maint(String[] args) {
- 
+ public static int main(String[] args) {
+    int M1 = 6;
+    int N1 = 4;
+    int arr1[][] {{0,0,0,0,0,0,}, 
+            {0,0,0,0,0,0},
+            {0,0,0,0,0,0},
+            {0,0,0,0,0,0}};  
+            
+     int res = solution(M1, N1, arr1);
+     System.out.println("1: " + res);
  }
  
  public static int solution(int M, int N, int arr[][]){
