@@ -53,7 +53,11 @@ import java.util.*;
 
 public class epper2019_3 {
   public static void main(String [] args){
-    
+      String str1 = "Listen";
+      String str2 = "Silent";
+      
+      char res = solution(str1, str2);
+      System.out.println(res);
   }
   
   public static char solution(String str1, String str2){
