@@ -46,7 +46,7 @@ public class Q3 {
 }
 ```
 
-### 풀이 2 
+### 풀이 2  (2020.10.1)
 사전식 정렬  ==> 배열 자료구조  Arrays.sort(), Arrays.equals()
 ```java
 import java.util.*;
@@ -65,7 +65,7 @@ public class epper2019_3 {
     Arrays.sort(arr1);
     Arrays.srort(arr2);
     
-    if(Arrays.equals(arr1, arr2){
+    if(Arrays.equals(arr1, arr2)){
       res = 'T';
     }else{
       rest = 'F'; 
