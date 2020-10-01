@@ -1,12 +1,12 @@
 //epper19_5.java
 
 /*
-** Âü°í (2020.01.23)**
- 'a'ºÎÅÍ 'z'±îÁö "¿ì¼±¼øÀ§Å¥""¸¦ ¸¸µé°í ÇØ´ç ±ÛÀÚ·Î ½ÃÀÛÇÏ´Â ´Ü¾îµéÀ» Å¥¿¡ ³ÖÀº ÈÄ,
- ´Ü¾î °ÔÀÓÀÌ ½ÃÀÛµÇ¾î Ã¹ ±ÛÀÚ°¡ ÁÖ¾îÁö¸é ±× ±ÛÀÚ¿¡ ´ëÀÀµÇ´Â ¿ì¼±¼øÀ§ Å¥¿¡¼­
- ´Ü¾î¸¦ poll() ÇÏ¿© Ãâ·ÂÇÑ´Ù.
- ÀÌ °úÁ¤¿¡¼­ ¿ì¼±¼øÀ§Å¥¸¦ »ç¿ëÇÏ±â À§ÇØ ComparableÀ» implements ÇÑ word Å¬·¡½º¸¦ Á¤ÀÇÇßÀ¸¸ç,
- ¹®Á¦¿¡¼­ ÁÖ¾îÁø Á¶°Ç´ë·Î ´Ü¾î¸¦ Á¤·ÄÇÏµµ·Ï compareto()¸¦ ¿À¹ö¶óÀÌµù Çß´Ù.
+** ì°¸ê³  (2020.01.23)**
+ 'a'ë¶€í„° 'z'ê¹Œì§€ "ìš°ì„ ìˆœìœ„í""ë¥¼ ë§Œë“¤ê³  í•´ë‹¹ ê¸€ìë¡œ ì‹œì‘í•˜ëŠ” ë‹¨ì–´ë“¤ì„ íì— ë„£ì€ í›„,
+ ë‹¨ì–´ ê²Œì„ì´ ì‹œì‘ë˜ì–´ ì²« ê¸€ìê°€ ì£¼ì–´ì§€ë©´ ê·¸ ê¸€ìì— ëŒ€ì‘ë˜ëŠ” ìš°ì„ ìˆœìœ„ íì—ì„œ
+ ë‹¨ì–´ë¥¼ poll() í•˜ì—¬ ì¶œë ¥í•œë‹¤.
+ ì´ ê³¼ì •ì—ì„œ ìš°ì„ ìˆœìœ„íë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•´ Comparableì„ implements í•œ word í´ë˜ìŠ¤ë¥¼ ì •ì˜í–ˆìœ¼ë©°,
+ ë¬¸ì œì—ì„œ ì£¼ì–´ì§„ ì¡°ê±´ëŒ€ë¡œ ë‹¨ì–´ë¥¼ ì •ë ¬í•˜ë„ë¡ compareto()ë¥¼ ì˜¤ë²„ë¼ì´ë”© í–ˆë‹¤.
 */
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 Class Word implements Comparable<Word>{
   String word;
-  int count;//¸»ÇÑ È½¼ö
+  int count;//ë§í•œ íšŸìˆ˜
 
   public Word(String word){
     this.word = word;
@@ -23,9 +23,9 @@ Class Word implements Comparable<Word>{
   }
 
   @Override
-  public int compareTo(Word o){//** °´Ã¼ **
-    //¸»ÇÑ È½¼ö°¡ ÀÛÀº ¼øÀ¸·Î Á¤·Ä.
-    //¸»ÇÑ È½¼ö°¡ °°´Ù¸é ¾ËÆÄºª ¼øÀ¸·Î Á¤·Ä
+  public int compareTo(Word o){//** ê°ì²´ **
+    //ë§í•œ íšŸìˆ˜ê°€ ì‘ì€ ìˆœìœ¼ë¡œ ì •ë ¬.
+    //ë§í•œ íšŸìˆ˜ê°€ ê°™ë‹¤ë©´ ì•ŒíŒŒë²³ ìˆœìœ¼ë¡œ ì •ë ¬
     if (this.count == o.count)
       return this.word.compareTo(o.word);
     else return this.count - o.count;
@@ -39,36 +39,34 @@ public class Q5 {
     String word, user_input;
     Word temp_word;
 
-    // 'a'ºÎÅÍ 'z'±îÁö ±× ±ÛÀÚ·Î ½ÃÀÛÇÏ´Â ´Ü¾î¸¦ ´ãÀ» priorityQueue¸¦ °¢°¡ »ı¼º
+    // 'a'ë¶€í„° 'z'ê¹Œì§€ ê·¸ ê¸€ìë¡œ ì‹œì‘í•˜ëŠ” ë‹¨ì–´ë¥¼ ë‹´ì„ priorityQueueë¥¼ ê°ê°€ ìƒì„±
     List<PriorityQueue<Word>> pgs = new LinkedList<>();
     for (int i=0; i<('z'-'a'+1);i++)
       pqs.add(new PriorityQueu<>());
 
-    // k,n ÀÔ·Â ¹Ş±â
+    // k,n ì…ë ¥ ë°›ê¸°
     k = sc.nextInt();
     n = sc.nextInt();
     sc.nextLine();
 
-    //¹Ì ¸® ÁÖ¾îÁö´Â ´Ü¾î ÀÔ·Â ¹Ş±â
+    //ë¯¸ ë¦¬ ì£¼ì–´ì§€ëŠ” ë‹¨ì–´ ì…ë ¥ ë°›ê¸°
     for (int i=0; i<k; i++){
-      // ÀÔ·Â¹ŞÀº ±ÛÀÚ·Î Word ÀÎ½ºÅÏ½º »ı¼º ÈÄ, ¸Â´Â PriorityQueue¿¡ ´ã±â
+      // ì…ë ¥ë°›ì€ ê¸€ìë¡œ Word ì¸ìŠ¤í„´ìŠ¤ ìƒì„± í›„, ë§ëŠ” PriorityQueueì— ë‹´ê¸°
       word = sc.nextLine();
       pqs.get(word.charAt(0)-'a').add(new Word(word));
     }
 
-    // ´Ü¾î °ÔÀÓ ½ÃÀÛ
+    // ë‹¨ì–´ ê²Œì„ ì‹œì‘
     for (int i=0; i<n; i++) {
       user_input = sc.nextLine();
 
-      // ÇØ´ç ±ÛÀÚ·Î ½ÃÀÛÇÏ´Â ´Ü¾î Áß °¡Àå ¿ì¼±ÀÎ °Í ²¨³»¾î Ãâ·ÂÇÏ±â .
-      temp_word = pgs.get(word_input.charAt(0)-'a').poll();
+      // í•´ë‹¹ ê¸€ìë¡œ ì‹œì‘í•˜ëŠ” ë‹¨ì–´ ì¤‘ ê°€ì¥ ìš°ì„ ì¸ ê²ƒ êº¼ë‚´ì–´ ì¶œë ¥í•˜ê¸° .
+      temp_word = pgs.get(user_input.charAt(0)-'a').poll();
       System.out.println(temp_word.word);
 
-      // ÇÑ¹ø ¸»ÇØÁ³À¸¹Ç·Î count Áõ°¡ ½ÃÅ°°í ´Ù½Ã queue¿¡ ³Ö±â
+      // í•œë²ˆ ë§í•´ì¡Œìœ¼ë¯€ë¡œ count ì¦ê°€ ì‹œí‚¤ê³  ë‹¤ì‹œ queueì— ë„£ê¸°
       temp_word.count++;
       pqs.get(user_input.charAt(0)-'a').add(temp_word);
     }
 
-    if (n > m) System.out.println(2*(m-1));
-    else System.out.pritln(2 * (n-1));
 }
