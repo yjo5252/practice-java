@@ -1,5 +1,40 @@
 # 다이나믹 프로그래밍 (DP)
 
+-- 목  차 --
+#### 1) [가장 긴 증가하는 부분수열 : 11053번](#1-가장-긴-증가하는-부분수열)
+```java
+// bottom-up 
+if(arr[j] < arr[i] && d[i] <= d[j])
+	d[i] = d[j] + 1;
+...
+for (int i=1; i<=n; i++)
+	max = Math.max(d[i], max);
+	
+```
+
+#### 2) [가장 긴 감소하는 부분수열 : 11722번](#1-가장-긴-감소하는-부분수열)
+```java
+// bottom-up 
+if(arr[i] < arr[j] && d[i] <= d[j]){
+	d[i] = d[j]+1;
+}else if (arr[i] == arr[j]){
+	d[i] = d[j];	
+}
+...
+for (int i=1; i<=n; i++)
+	max = Math.max(d[i], max);	
+```
+#### 3) [카드 구매하기 : 11052번](#2-카드-구매하기)
+
+```java
+for (int i=1; i<=n; i++)
+	for(int j =0; j<=i) j++)
+		max = Math.max(d[i], p[j]+d[j-1];
+
+```
+
+
+
 ### 1. 가장 긴 증가하는 부분수열
 * 백준 11053번 문제 
 
