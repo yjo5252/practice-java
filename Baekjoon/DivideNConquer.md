@@ -9,6 +9,7 @@ s = n/2;
 ```java
 int std = map[row][col] ;
 s = n/3;
+divide(row+s*i, col+s*j, s);
 ```
 
 
