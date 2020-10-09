@@ -1,17 +1,34 @@
 # 백준
 
 ## 1. 분할정복법 
-재귀 divide(), conquer() 
-
-#### 1) 종이의 개수 : 1780번  
+### 풀이법 재귀 divide(), check() 
 ```java
+// check
 int std = map[row][col] ;
-s = n/3;
+for (int i = row; i < row + n; i++) {
+    for (int j = col; j < col + n; j++) {
+        if (std != map[i][j])
+            return false;
+    }
+}
+return true;
 ```
-#### 2) 쿼드트리 : 1992번
 ```java
-s = n/2; //
+// divide
+if (check(row, col, n)) {
+    count[map[row][col]+1]++;
+} else {
+    int s = n / 3;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            divide(row + s * i, col + s * j, s);
+        }
+    }
+}
 ```
+### 문제 리스트 
+* 쿼드트리 : 1992번
+* 종이의 개수 : 1780번
 
 ## 2. 동적계획법 (DP)
 #### 속성 
