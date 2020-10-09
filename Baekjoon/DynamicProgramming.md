@@ -84,5 +84,37 @@ public class Baek11722 {
 }
 ```
 
+### 3. 카드 구매하기 
+* 백준 11052번 문제 
+```
+import java.util.Scanner;
+
+public class Baek11052 {
+	public static void main(String [] args){
+		Scanner sc  = new Scanner(System.in);
+		int n = sc.nextInt();
+		
+		int[] p = new int[n + 1];
+		int[] d = new int[n + 1];
+		
+		for(int i = 1; i <= n; i++){
+			arr[i] = sc.nextInt();
+		}
+		
+		for(int i=1; i<=n; i++){
+			for(int j=0; j<=i; j++){
+				max = Math.max(d[i], p[j]+d[i-j];
+			}
+		}
+		
+		System.out.println(d[n]);
+		
+		sc.close();
+
+	}
+}
+```
+
+
 
 
