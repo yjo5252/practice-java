@@ -81,7 +81,7 @@ public class Main {
 
 ```
 
-### 2. 가장 긴 감소하는 부분 수열 
+### 2. 가장 긴 감소하는 부분수열 
 * [백준 11722번 문제](https://www.acmicpc.net/problem/11722)
 ```java
 import java.util.Scanner;
