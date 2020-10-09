@@ -30,7 +30,7 @@ public class Q9{
         C = scan.nextInt();
         long answer[] = new long[C];
         for (int testCase = 0; testCase < C; testCase++){
-            N = scan.nextInt();
+            N = C;
             
             // 배열 선언            
             int triangle[][] = new int[N][];
