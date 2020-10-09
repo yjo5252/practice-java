@@ -86,7 +86,7 @@ public class Baek11722 {
 
 ### 3. 카드 구매하기 
 * 백준 11052번 문제 
-```
+```java
 import java.util.Scanner;
 
 public class Baek11052 {
