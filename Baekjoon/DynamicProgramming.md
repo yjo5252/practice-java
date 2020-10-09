@@ -1,6 +1,6 @@
 # 다이나믹 프로그래밍 (DP)
 
-### 가장 긴 증가하는 부분수열
+### 1. 가장 긴 증가하는 부분수열
 * 백준 11053번 문제 
 
 ```java
@@ -42,3 +42,47 @@ public class Main {
 }
 
 ```
+
+### 2. 가장 긴 감소하는 부분 수열 
+* 11722
+```java
+import java.util.Scanner;
+
+public class Baek11722 {
+	public static void main(String[] args){
+		Scanner sc  = new Scanner(System.in);
+		
+		int n = sc.nextInt();
+		int arr[] = new int[n+1];
+		int d[] = new int[n+1];
+		
+		for (int i=1; i<= n; i++)
+			arr[i] = sc.nextInt();
+		
+		d[1] = 1;
+		
+		for(int i =2; i < n; i++){
+			int d[i] =1;
+			for(int j=0; j<i; j++){
+				if(arr[i] < arr[j] && d[i] <= d[j]){
+					d[i] = d[j]+1;
+				}else if (arr[i] == arr[j]){
+					d[i] = d[j];	
+				}
+			}
+		}	
+		
+		int max = 0;
+		
+		for (int i=1; i<=n; i++)
+			max = Math.max(d[i], max);
+			
+		System.out.println(max);
+		
+		sc.close();
+	}
+}
+```
+
+
+
