@@ -33,10 +33,13 @@ for (int i=1; i<=n; i++)
 
 ```
 
+(미풀이)
+
+
 
 
 ### 1. 가장 긴 증가하는 부분수열
-* 백준 11053번 문제 
+* [백준 11053번 문제](https://www.acmicpc.net/problem/11053)
 
 ```java
 import java.io.*;
@@ -79,7 +82,7 @@ public class Main {
 ```
 
 ### 2. 가장 긴 감소하는 부분 수열 
-* 11722
+* [백준 11722번 문제](https://www.acmicpc.net/problem/11722)
 ```java
 import java.util.Scanner;
 
