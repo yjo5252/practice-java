@@ -102,7 +102,7 @@ class Solution{
           } esle if(n%i == 1){ //p가 n을 나머지 1을 남기고 
               if((m-1)%i == 0) answer[j++] = i; //p가 m-1을 나머지 없이 나눌 수 있는 경우 
               else if ((m-2) % i == 0 && m % i == 0) answer[j++] = i; // p가 m-2를 나머지 없이 나눌 수 있는 경우, m을 나머지 없이 나눌 수 있는 경우 
-          } else if (n % i == 0 && (n-2) % i == 0) answer[j++] = i; // p가 n을 나머지 없이 나눌 수 있는 경우, n-2를 나머지 없이 나눌 수 있는 경우 
+          } else if (m % i == 0 && (n-2) % i == 0) answer[j++] = i; // p가  n-2를 나머지 없이 나눌 수 있는 경우, m을 나머지 없이 나눌 수 있는 경우, 
         }
      }
      return answer;
