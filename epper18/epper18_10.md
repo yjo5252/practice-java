@@ -29,7 +29,7 @@ class Solution {
     
     int n_len = n.length; //공정의 개수 
     int[][] adj = new int [n_len][n_len]; // 선후 관계
-    int[] time = ne int [n_len]; //해당 공정의 진행 시간 
+    int[] time = new int [n_len]; //해당 공정의 진행 시간 
     int[] total = new int [n_len]; // 공정 최소 시간  (출력값)
     int[] inDegree = new int [n_len]; // 선수 공정의 개수 
     
