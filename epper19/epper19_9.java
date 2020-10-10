@@ -25,10 +25,10 @@ public class Q9{
     }
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
-        int N;
-        int C;
-        C = scan.nextInt();
-        long answer[] = new long[C];
+        int N; 
+        int C; // 삼각형의 크기 (층 수)
+        C = scan.nextInt(); 
+        long answer[] = new long[C]; // 각 층의 최적 경로 
         for (int testCase = 0; testCase < C; testCase++){
             N = scan.nextInt();
             
