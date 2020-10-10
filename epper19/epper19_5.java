@@ -40,7 +40,7 @@ public class Q5 {
     Word temp_word;
 
     // 'a'부터 'z'까지 그 글자로 시작하는 단어를 담을 priorityQueue를 각가 생성
-    List<PriorityQueue<Word>> pgs = new LinkedList<>();
+    List<PriorityQueue<Word>> pqs = new LinkedList<>();
     for (int i=0; i<('z'-'a'+1);i++)
       pqs.add(new PriorityQueu<>());
 
@@ -61,7 +61,7 @@ public class Q5 {
       user_input = sc.nextLine();
 
       // 해당 글자로 시작하는 단어 중 가장 우선인 것 꺼내어 출력하기 .
-      temp_word = pgs.get(user_input.charAt(0)-'a').poll();
+      temp_word = pqs.get(user_input.charAt(0)-'a').poll();
       System.out.println(temp_word.word);
 
       // 한번 말해졌으므로 count 증가 시키고 다시 queue에 넣기
