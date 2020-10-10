@@ -70,3 +70,53 @@ public class Q9{
 }
 ```
 ### 풀이법 2. 새로운 값을 추가해서 풀이한다. 
+n x m 크기의 정렬 바닥에 타일을 붙인다. 
+가능한 p를 출력한다. 
+
+풀이 아디이어: 가능한 P를 구하는 것이기 때문에 일정횟수를 반복하여 가능한지를 확인하는 방법
+필요한 코드: for문/else if 를 사용하여 풀이한다. 
+문제조건: 먼저 정원의 테두리에만 붙이기 때문에 테두리만의 크기를 계산한다. 
+가장 긴 타일의 길이를 정원의 크기를 고려하여 알아내고, 해당 횟수만큼 반복하여 각 P가 가능한지 확인한다. 
+```java
+class Solution{
+  public static int[] solution(int n, int m) {
+    int[] answer = {};
+    int min = Math.min(n,m);
+    answer = new int[min+1];
+    
+    int total = n*m; //정원의 테두리의 크기 
+    if(n != 1 && m != 1)
+      total -= (m-2)*(n-2);
+     
+     int j = 0; 
+     for (int i = 1; i<= min; i++){
+        if (i == 1){ // 1 * 1
+            answer[j++] = 1;
+            continue;
+        }
+        if (total % i ==0){
+          if(n % i == 0){ //p가 n을 나머지 없이 나눌 수 있는 경우 
+            if((m-2)%i==0) answer[j++] = i; // p가 m-2를 나머지 없이 나눌 수 있는 경우
+            else if ((m-1)%i==0 && (n-2)%i==0) //p가 m-1을 나머지 없이 나눌 수 있는 경우, n-2를 나머지 없이 나눌 수 있는 경우 
+              answer [j++] = i;
+          } esle if(n%i == 1){ //p가 n을 나머지 1을 남기고 
+              if((m-1)%i == 0) answer[j++] = i; //p가 m-1을 나머지 없이 나눌 수 있는 경우 
+              else if ((m-2) % i == 0 && m % i == 0) answer[j++] = i; // p가 m-2를 나머지 없이 나눌 수 있는 경우, m을 나머지 없이 나눌 수 있는 경우 
+          } else if (n % i == 0 && (n-2) % i == 0) answer[j++] = i; // p가 n을 나머지 없이 나눌 수 있는 경우, n-2를 나머지 없이 나눌 수 있는 경우 
+        }
+     }
+     return answer;
+  }
+  
+  public static void main(String[] args){
+  
+  
+  }
+}
+```
+
+
+
+
+
+
