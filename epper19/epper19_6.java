@@ -16,7 +16,7 @@ public class Q6 {
     double triangle=31250.0;//?
 
     x1 = sc.nextInt();
-    x2 = sc.nextInt();
+    y1 = sc.nextInt();
 
     //점이 y축 위에 있는 경우
     if (x1 == 0){
@@ -26,8 +26,8 @@ public class Q6 {
       y2 = 0;
       // 계산된 점의 좌표가 삼각형의 선분위가 아니라면 점2가 삼각형의 빗변위에 있음
       if (x2<0||x2>250){
-        x2 = triangle(250-y1);
-        y2 =-x2+250;
+        x2 = triangle/(250-y1); 
+        y2 =-x2+250;   // x + y = 250 직선방정식 위의 (X2,y2)
       }
     }
     // 점이 x축 위에 있는 경우 
