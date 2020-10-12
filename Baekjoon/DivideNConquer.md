@@ -2,7 +2,7 @@
 
 
 #### 1) [쿼드트리 : 1992번](#1-쿼드트리)
-```ja
+```java
 s = n/2; 
 ```
 #### 2) [종이의 개수 : 1780번](#2-종이의-개수)
@@ -10,6 +10,10 @@ s = n/2;
 int std = map[row][col] ;
 s = n/3;
 divide(row+s*i, col+s*j, s);
+```
+
+### 3) [Z: 1074](#3-Z)
+```java
 ```
 
 
@@ -135,3 +139,87 @@ public class beak_1780 {
 }
 
 ```
+
+### 3. Z 
+* [백준 1074번 문제](https://www.acmicpc.net/problem/1074)
+* 배열의 크기를 최소 사이즈가 2가 될때까지 계속 4등분하면서 입력받은 좌표가 범위 안에 있는 것들만 계산한다.
+* 방문순서는 왼쪽 위칸, 오르쪽 위칸, 왼쪽 아래칸, 오른쪽 아래칸
+* 찾는 좌표가 어느 분면에 속하는지 알아내면 문제를 해결할 수 있다 
+- 3분면에 속한다는 의미는 1,2분면을 방문했다는 것을 의미하므로 1,2분면의 방문한 수를 더해주면 된다
+- 3분면안에서 다시 4등분한다
+* 현재위치(x,y)를 (r,c)와 비교하며 영역을 찾아간다. 
+* 예를 들어 8 * 8 배열을 4등분하고 최소 사이즈가 됐을 때 방문 횟수를 계산해서 출력한다.
+
+```java
+import java.util.Scanner;
+
+
+public class Main{
+   
+   public static int row;
+   public static int col;
+   
+   public static int[] dy = {0, 0, 1, 1};
+   public static int[] dx = {0, 1, 0, 1};
+   public static void main(String[] args){
+     Scanner sc = new Scanner(System.in);
+     int pow = sc.nextInt();
+     
+     int size = (int) Math.pow(2, pow);
+     row = sc.nextInt();
+     col = sc.nextInt();
+     
+     drawZ(0, 0, 0, size);     
+   
+     sc.close();
+     
+     System.out.println(size*size);
+   }
+   
+   public static void drawZ(int y, int x, int cnt, int size){
+    // 확인하는 row와 col의 좌표가 y <= row < y+size, x <= col < x+size의 범위에 해당하지 않으면 구할 필요 없다. 
+    if(y > row || y+size <= row || x > col || x+size <= col ) return;
+
+    if(size == 2){
+      for (int i=0 ; i < 4; i++){
+         int yy = dy[i] + y;
+         int xx = dx[i] + x;
+
+         if(yy == row && xx == col)System.out.println(cnt + i);
+      }
+      return;
+    }
+
+    int newSize = size/2;
+    //if(row <y+newSize && col < x+newSize)
+      drawZ(y, x, cnt, newSize); // 왼쪽 위
+    
+    //if(row < y+newSize && col >= x+newSize)
+      drawZ(y, x+newSize, cnt+(newSize*newSize), newSize); // 오른쪽 위, 횟수 1 추가  
+
+    //if(row >= y+newSize && col < x+newSize)
+      drawZ(y+newSize, x, cnt+(newSize*newSize)*2, newSize); // 왼쪽 아래, 횟수 2추가
+
+   // if(row >= y+newSize && col >= x + newSize)
+      drawZ(y+newSize, x+newSize, cnt+(newSize*newSize)*3, newSize); // 오른쪽 아래, 횟수 3추가
+   }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
