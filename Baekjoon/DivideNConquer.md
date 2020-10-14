@@ -209,14 +209,37 @@ public class Main{
 
 ### 4. 색종이 만들기 
 * [백준 2630번 문제](https://www.acmicpc.net/problem/2630)
+- 전체 종이의 한 변의 길이 N
+- 잘라진 종이가 모두 같은 색으로 칠해져 있거나, 하나의 정사각형 칸이 되어 더 이상 자를 수 없을 때까지 반복한다.  
+- 출력: 잘라진 하얀색 색종이 개수, 파란색 색종이 개수 
+```java
+import java.io.*;
 
-
-
-
-
-
-
-
+class Main{
+  private static boolean[][] board;
+  private static int white;
+  private static int blue;
+  
+  public static void main(String[] args) throws Exception{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    
+    board = new boolean[n][n];
+    
+    for(int i=0; i< n; i++){
+      String [] line = br.readLine().split(" ");
+      for (int j=0; j < line.length; j++){
+        board[i][j] = line[j].equals("1");
+      }
+    }
+  
+    divide(0, 0, n);
+    
+    System.out.println(white);
+    System.out.println(blue);
+  }
+}
+```
 
 
 
