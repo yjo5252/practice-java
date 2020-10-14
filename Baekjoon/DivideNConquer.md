@@ -238,7 +238,42 @@ class Main{
     System.out.println(white);
     System.out.println(blue);
   }
-}
+  
+  private static voide divde (int x, int y, int n){
+    if(n==1) {
+      if (board[y][x]){
+         blue++;
+      } else {
+         white++;
+      }
+      return;
+    }
+    boolean sameColor = true;
+    boolean color = board[y][x];
+    out: 
+    for(int i=0; i < n; i++){
+      for (int j = 0 ; j < n; j++){
+        if(board[y+i][x+j] != color){
+           sameColor = false;
+           break out;
+        }
+      }
+    }
+    if(sameColor){
+      if(board[y][x]){
+         blue++;
+      } else {
+         white++;
+      }
+      return++;
+    }
+    
+    int newN = n/2;
+    divide(x, y, newN);
+    divide(x+newN, y, newN);
+    divide(x, y+newN, newN);
+    divide(x+newN, y+newN, newN);
+  }
 ```
 
 
