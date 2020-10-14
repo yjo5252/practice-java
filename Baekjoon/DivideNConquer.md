@@ -265,7 +265,7 @@ class Main{
       } else {
          white++;
       }
-      return++;
+      return;
     }
     
     int newN = n/2;
