@@ -47,6 +47,12 @@ public static void main(String[] args){
 ### 2. 최소스패닝트리
 * [백준 1197번 문제](https://www.acmicpc.net/problem/1197)
 * for 반복문에서 continue 문: while문의 {} 안에서 continue 문장을 만난 순간 continue 문 아래에 있는 실행해야 하는 문장들을 건너 뛰고, 다음 반복을 시작한다. 
+* 크루스칼은 간선을 중심으로. 우선순위큐를 이용해 가중치가 가장 작은 것을 고르고  싸이클이 생기지 않고 모든 노드를 방문할 수 있도록 고른다. 
+1. 간선 class 만들고. 가중치에 따라 정렬되게 Comparable 설정
+2. 가중치가 가장 작은 간선을 꺼낸다. (poll)
+3. 시작노드와 끝 노드의 최상위 노드를 찾는다. 최상위 노드가 없다면 자기 자신이 된다.(find)
+4. 최상위 노드가 다르다면 union을 통해 그 간선을 고르고 가중치를 result에 더해준다. 
+
 ```java
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -76,25 +82,29 @@ public class Main{
             pq.add(new edge(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
         }
         
-        for (int i=0; i<m; i++){
+        //시작노드와 끝노드의 최상위 노드를 찾는다. 
+        // 같으면 사이클이 생기는 것이므로 지나간다. 
+        // 아니면 union을 통해 그 간선을 고르고 가중치를 더해준다.
+        for (int i=0; i<m; i++){ //간선 개수만큼 반복한다
             edge tmp = pq.poll();
             
-            int a = find(tmp.s);
-            int b = find(tmp.e);
+            int a = find(tmp.s); 
+            int b = find(tmp.e); 
             
-            if(a == b) continue; 
-            union(a,b);  // a,b 집합을 하나의 집합으로 만든다
-            result += tmp.v;
+            if(a == b) continue;  
+            union(a,b);  
+            result += tmp.v; 
         }
         System.out.println(result);
      }
-
+   
+   // 크루스칼의 기본 FIND 메소드: 최상위노드 찾기
       public static int find(int a){
         if(a == parent[a]) return a;
         parent[a] = find(parent[a]);
         return parent[a];
       }
-      
+    // 크루스칼의 기본 UNION 메소드: 간선을 채택한다.
       public static void union(int a, int b){
           int aRoot = find(a);
           int bRoot = find(b);
@@ -107,7 +117,7 @@ public class Main{
       }
 }
 
-// V 기준으로 Comprable을 통해 우선순위 정한다. 
+// V 기준으로 Comprable을 통해 우선순위 정한다. 그래야 우선순위 큐 사용 가능하다
 class edge implements Comparable<edge>{
     int s; // start
     int e; // end 
