@@ -8,6 +8,38 @@
 #### 2) [최소스패닝트리 : 1197번](#2-최소스패닝트리)
 ```java
 
+for (int i=0; i<m; i++){ //간선 개수만큼 반복한다
+            edge tmp = pq.poll();
+            
+            int a = find(tmp.s); 
+            int b = find(tmp.e); 
+            
+            if(a == b) continue;  
+            union(a,b);  
+            result += tmp.v; 
+ }
+ // 크루스칼의 기본 FIND 메소드: 최상위노드 찾기
+ public static int find(int a){
+        if(a == parent[a]) return a; //** 
+        parent[a] = find(parent[a]);
+        return parent[a];
+      }
+// 크루스칼의 기본 UNION 메소드: 간선을 채택한다.
+public static void union(int a, int b){
+      int aRoot = find(a);
+      int bRoot = find(b);
+     if(aRoot != bRoot){ //**
+         parent[aRoot] = b;
+     } else{
+        return;
+ }
+ 
+ // V 기준으로 Comprable을 통해 우선순위 정한다. 그래야 우선순위 큐 사용 가능하다
+class edge implements Comparable<edge>{
+...
+    public int compareTo(edge arg0){
+        return arg0.v >= this.v? -1: 1;
+    }
 ```
 
 #### 3) [잃어버린 괄호 : 1541번](#3-잃어버린-괄호)
