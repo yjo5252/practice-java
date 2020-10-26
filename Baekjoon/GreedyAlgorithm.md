@@ -168,7 +168,41 @@ class edge implements Comparable<edge>{
 ```
 ### 3. 잃어버린 괄호
 * [백준 1541번 문제](https://www.acmicpc.net/problem/1541)
+* 적절한 괄호를 쳐서 식의 값을 최소로 만든다
+* 빼는 값을 최대로 만든다. 
+* split(args): 입력받은 인자를 기준으로 나누어진 String배열을 리턴
+* substring(int start, int end): 이거 아님. 
+```java
+import java.util.Arrays;
+import java.util.Scanner;
 
+public class Q1541{
+      static int min = 0;
+      
+      public static void main(String[] args){
+            Scanner sc = new Scanner(System.in);
+            String input = sc.nextLine();
+            
+            // 첫번째 - 뺄셈 기호 앞에 있는 것들 모두 더하기 
+            String[] str = input.split("-");
+            min += sum(str[0].split("[+]"));
+            
+            for (int i = 1; i < str.length; i++){
+                 min -= sum (str[i].split("[+]"));
+            }
+            System.out.println(min);
+      }
+
+      static int sum (String[] input){
+            int result = 0;
+            for (String num : input) {
+                 result += Integer.parseInt(num);            
+            }
+            return result;
+      }
+}
+
+```
 
 ### 4. 최단경로 
 * [백준 1753번 문제](https://www.acmicpc.net/problem/1753)
