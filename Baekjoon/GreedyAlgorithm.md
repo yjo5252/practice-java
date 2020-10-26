@@ -52,7 +52,7 @@ public static void main(String[] args){
 2. 가중치가 가장 작은 간선을 꺼낸다. (poll)
 3. 시작노드와 끝 노드의 최상위 노드를 찾는다. 최상위 노드가 없다면 자기 자신이 된다.(find)
 4. 최상위 노드가 다르다면 union을 통해 그 간선을 고르고 가중치를 result에 더해준다. 
-
+5. [JAVA 우선순위큐 클래스 사용법](https://github.com/yjo5252/practice-java/blob/master/datastructure/PriorityQueue.md)
 ```java
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -133,7 +133,6 @@ class edge implements Comparable<edge>{
     }
 }
 
-class
 ```
 ### 3. 잃어버린 괄호
 * [백준 1541번 문제](https://www.acmicpc.net/problem/1541)
