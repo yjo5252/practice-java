@@ -16,7 +16,7 @@ PriorityQueue<String> priorityQueue = new PriorityQueue<>();
 PriorityQueue<String> priorityQueue = new PriorityQueue<>(Collections.reverseOrder());
 
 ```
-1. java.util.PriorityQueu 라이브러리를 추가한다. 
+1. java.util.PriorityQueue 라이브러리를 추가한다. 
 2. Queue<Element> queue = new Queue<>() 와 같은 형식으로 선언한다. 
 * 옵션: 
     * 기본: 우선순위가 낮은 숫자가 부여된다 (작은게 최상위 노드)
