@@ -8,9 +8,17 @@
 * 추상 메서드 `compareTo()`를 구현해야 한다. 비교하려는 대상 객체를 매개변수로 넘겨준다. 
 * 비교 대상이 동일한 값일 경우0, 작은 경우 -1, 큰 경우 1을 반환한다. 
 ```java
-@override
-compareTo(Node o){
-  return weight - o.weight;
+class Node implements Comparable <Node> {
+      int end, weight;
+
+      public Node (int end, int weight){
+            this.end = end;
+            this.weight = weight;
+      }
+      @override
+      public int compareTo(Node o){
+            return weight - o.weight;
+      }
 }
 
 ```
