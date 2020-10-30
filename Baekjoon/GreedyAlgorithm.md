@@ -161,7 +161,7 @@ public class Main{
         }
         for (int i=0; i<m; i++){
             st = new StringTokenizer(br.readLine());
-            pq.add(new edge(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+            pq.add(new edge(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
         }
         
         //시작노드와 끝노드의 최상위 노드를 찾는다. 
