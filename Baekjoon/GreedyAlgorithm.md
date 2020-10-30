@@ -50,7 +50,29 @@ class edge implements Comparable<edge>{
 #### 4) [최단 경로 : 1753번](#4-최단-경로)
 ```java
 
+           private static void dijkstra(int start){
+            PriorityQueue<Node> queue = new PriorityQueue<>();
+            boolean[] check = new boolean[v+1];
+            queue.add(new Node(start, 0));
+            dist[start] = 0;
+            
+            while(!queue.isEmpty()){
+               Node curNode = queue.poll();
+               int cur = curNode.end;
+               
+               if(check[cur] == true) continue;
+               check[cur] = true;
+               
+               for (Node node: list[cur]){
+                    if(dist[node.end] > dist[cur] + node.weight){
+                        dis[node.end] = dist[cur] + node.weight;
+                        queue.add(new Node(node.end, dist[node.end]));
+                    }
+               }
+            }     
+      }
 ```
+
 
 
 ### 1. 설탕 배달
@@ -208,7 +230,8 @@ public class Q1541{
 * [백준 1753번 문제](https://www.acmicpc.net/problem/1753)
 * 다익스트라 알고리즘 : 한 노드에서 모든 노드로 가는 최단거리를 구할 수 있다. 최단거리를 저장하는 배열 + 우선순위 큐를 이용해 구현한다. 
 * 요구사항: 주어진 시작점에서 다른 정점으로 가는 최단 경로를 구해라. 방향그래프. 간선의 가중치는 10이하 자연수 
-
+* Arrays.fill(dist, INF) : 배열의 사이즈만큼 지정한 특정 값으로 한번에 초기화
+* ArrayList의 add() 메소드는 인자로 전달된 객체를 리스트에 추가합니다. 
 ```java
 import java.io.*;
 import java.util.*;
@@ -274,14 +297,14 @@ public class Main{
             queue.add(new Node(start, 0));
             dist[start] = 0;
             
-            while(!queue.isEmpty(){
-               Node curNode = queue.poll();
+            while(!queue.isEmpty()){
+               Node curNode = queue.poll(); // 가중치가 작은것부터 
                int cur = curNode.end;
                
-               if(check[cur] == true) continue);
+               if(check[cur] == true) continue;
                check[cur] = true;
                
-               for (Node node: list[cur]({
+               for (Node node: list[cur]){
                     if(dist[node.end] > dist[cur] + node.weight){
                         dis[node.end] = dist[cur] + node.weight;
                         queue.add(new Node(node.end, dist[node.end]));
