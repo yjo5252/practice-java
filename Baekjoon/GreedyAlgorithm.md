@@ -19,12 +19,18 @@ for (int i=0; i<m; i++){ //간선 개수만큼 반복한다
             result += tmp.v; 
  }
  // 크루스칼의 기본 FIND 메소드: 최상위노드 찾기
+ /* 
+ 간선들의 가중치를 오름차순으로 정렬하고 간선들을 차례로 선택해서 간선을 잇는 두 정점의 Find 연산 
+ */
  public static int find(int a){
         if(a == parent[a]) return a; //** 
         parent[a] = find(parent[a]);
         return parent[a];
       }
 // 크루스칼의 기본 UNION 메소드: 간선을 채택한다.
+/* 
+두 연산이 다르면 Union 연산을 수행하는 
+*/
 public static void union(int a, int b){
       int aRoot = find(a);
       int bRoot = find(b);
