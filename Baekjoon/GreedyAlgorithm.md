@@ -79,25 +79,53 @@ class edge implements Comparable<edge>{
 * [백준 2839번 문제](https://www.acmicpc.net/problem/2839)
 * 5로 최대로 나누어보고 안 나누어질때까지 하나씩 줄여가며 3을 채워나간다. 
 ```java
-public static void main(String[] args){
-    int input = 0; 
-    int count = 0;
-    Scanner sc = new Scanner(System.in);
-    input = sc.nesxtInt();
-    
-    while (true) {
-       if(input %5 == 0){
-          System.out.println(input/5 + count);
-          break;
-       } else if(input <= 0) { //정확히 N킬로그램을 만들 수 없는 경우
-          System.out.println(-1);
-          break;
-       }
-       input = input -3; 
-       count++;
-    }
+import java.util.*;
+public class Main{
+            public static void main(String[] args){
+                int input = 0; 
+                int count = 0;
+                Scanner sc = new Scanner(System.in);
+                input = sc.nextInt();
+
+                while (true) {
+                   if(input %5 == 0){
+                      System.out.println(input/5 + count);
+                      break;
+                   } else if(input <= 0) { //정확히 N킬로그램을 만들 수 없는 경우
+                      System.out.println(-1);
+                      break;
+                   }
+                   input = input -3; 
+                   count++;
+                }
+            }
 }
 ```
+```java
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class Main{
+      publijc static void main(String[] args) throws IOException{
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            int N = Integer.parseInt(br.readLine());
+      if (N==4 || N==7){ // 3kg과 5kg 봉지로 이룰 수 없다. -1
+            System.out.println(-1);
+      }
+      else if(N % 5 == 0){
+            System.out.println(N/5);
+      }
+      else if(N % 5 == 1 || N % 5 == 3){
+            System.out.println((N/5) + 1);
+      }
+      else if(N % 5 == 2 || N % 5 == 4){ 
+            System.out.println((N/5) +2);
+      }
+    }           
+}
+```
+
 ### 2. 최소스패닝트리
 * [백준 1197번 문제](https://www.acmicpc.net/problem/1197)
 * for 반복문에서 continue 문: while문의 {} 안에서 continue 문장을 만난 순간 continue 문 아래에 있는 실행해야 하는 문장들을 건너 뛰고, 다음 반복을 시작한다. 
