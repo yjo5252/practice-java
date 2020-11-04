@@ -24,6 +24,7 @@ divide(row+s*i, col+s*j, s);
 ### 1. 쿼드트리
 * [백준 1992번 문제](https://www.acmicpc.net/problem/1992) 
 * 복잡한 문제를 작은 단위로 나눠서 처리한 후 합친다. 
+* 먼저 입력을 받고 divide 함수에서 재귀적으로 동작하고 if 문을 두어 모든 원소가 0이거나 1일 때 빠져나오기 한다.
 
 ```java
 import java.io.BufferedReader;
