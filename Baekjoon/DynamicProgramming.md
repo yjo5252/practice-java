@@ -171,7 +171,58 @@ public class Baek11052 {
 
 ### 4.연속 행렬 곱셈 순서
 * [백준 11049번 문제](https://www.acmicpc.net/problem/11049)
+* a[n][0] = row 값, a[n][1] = col 값 
+* 동적계획값은 d[][] 2차원배열에 저장 
+* 재귀를 이용해 dp[][] 배열에 저장해둔 값을 가져온다.
+* 배열 선언 new
+* StringTokenizer(bf.readLine()):  문자열을 지정된 구분자로 나눈다.
+* Integer.parseInt():  int 형식으로 변환해준다.
+* Arrays.fill(): 특정값으로 배열을 초기화할 때 유용하다.
 
+```java
+// 11049 행렬곱셈순서
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class test{
+  static int [][] a;
+  static int [][] dp;
+
+  public static int solve(int start, int end){
+    if(start == end) return 0;
+    if(dp[start][end] != Integer.MAX_VALUE){
+        return dp[start][end];
+    }
+    for(int i=start; i<end; i++){
+      int cost = solve(start, i) + solve(i+1, end)+ a[start][0]*a[i][1]*a[end][1];
+      dp[start][end] = Math.min(dp[start][end], cost);
+    }
+    return dp[start][end];
+  }
+
+  public static void main(String[] args) throws IOException {
+    BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(bf.readLine());
+    a = new int[n][2];
+    dp = new int[n][n];
+    
+    for(int i=0; i<n; i++){
+      StringTokenizer st = new StringTokenizer(bf.readLine());
+      a[i][0] = Integer.parseInt(st.nextToken());
+      a[i][1] = Integer.parseInt(st.nextToken());
+      Arrays.fill(dp[i], Integer.MAX_VALUE);
+    }
+    System.out.println("Array filled!");
+    System.out.println(solve(0, n-1));
+  }
+
+}
+
+```
 ### 5. 플로이드
 * [백준 11404번 문제](https://www.acmicpc.net/problem/11404)
 
