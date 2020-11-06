@@ -290,12 +290,184 @@ public class test{
 ```
 ### 6. 파일합치기
 * [백준 11066번 문제](https://www.acmicpc.net/problem/11066)
+* 문제: 소설의 각 장들이 수록되어있는 파일의 크기가 주어질 때, 이 파일들을 하나의 파일로 합칠 때 필요한 최소비용을 계산하는 프로그램
+* 입력: T 개의 텍스트 데이터 / (각 테스트 케이스는) 소설을 구성하는 장의 수 (K의 값), 1 - K 장까지 수록한 파일의 크기를 나타내는 양의 정수 (K개)
+* 알게 된 것
+1. BufferedWriter
+*  BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	* bw.write() : 출력해준다.
+	* bw.newLine(): 줄바꿈해준다.(\n 역할)
+	* bw.flush(); 현재 버퍼에 저장되어있는 내용을 모두 출력한다(클라이언트에게 전달하고 버퍼를 비운다.)
+	* bw.close(); 스트림을 닫는다. 
+
 ```java
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+
+public class Main{
+  public static void main(String[] args) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    StringTokenizer st;
+
+    int T = Integer.parseInt(br.readLine());
+
+    for (int i = 0; i < T; i++){
+      int K = Integer.parseInt(br.readLine());
+      st = new StringTokenizer(br.readLine());
+      int[] file = new int[K];
+      for(int j = 0; j < K; j++){
+        file[j] = Integer.parseInt(st.nextToken());
+      }
+
+      bw.write(String.valueOf(solution(file)));
+      bw.newLine();
+    }
+    bw.flush();
+    bw.close();
+  }
+   // sumDist(): 파일의 총합을 구하는 sum 배열에서 start&end 사이의 파일들의 총 합을 구하는 함수이다.
+  static int sumDist(int[] sum, int start, int end){
+    if(start == 0){
+      return sum[end];
+    } else{
+      return sum[end] - sum[start-1];
+    }
+  }
+
+  static int solution(int[] file){
+    int[][] dp = new int[file.length][file.length];
+    int[] sum = new int[file.length]; // sum 배열: 파일의 총합을 저장한다. 
+
+    sum[0] = file[0];
+
+    for(int i=1; i<sum.length;i++){
+      sum[i] = sum[i-1] + file[i];
+    }
+
+    for(int i=0; i<file.length-1; i++){
+      dp[i][i+1] = file[i] + file[i+1];  // 인접한 두 파일의 합을 넣어서 dp 배열을 초기화한다.
+    }
+    for(int j=2; j<file.length; j++){
+      for(int i=0; i+j < file.length; i++){
+        for(int k=i; k<i+j; k++){
+          if(dp[i][i+j] ==0){
+            dp[i][i+j] = dp[i][k] + dp[k+1][i+j] + sumDist(sum, i, i+j);
+          } else{
+            dp[i][i+j] = Math.min(dp[i][i+j], dp[i][k] + dp[k+1][i+j] + sumDist(sum, i, i+j));
+          }
+        }
+      }
+    }
+  return dp[0][file.length-1];
+}
+}
 
 ```
 ### 7. LCS2 
 * [백준 9252번 문제](https://www.acmicpc.net/problem/9252)
+* LCS의 길이와 공통 문자열을 출력하는 문제 
+* LCS (Longer Common Subsequence): 두 수열이 주어졌을 때, 모두의 부분수열이 되는 수열 중 가장 긴 것을 찾는 문제
+* LCS의 길이를 구한뒤에 역추적으로 해당 수열을 출력해서 풀 수 있다.
+	* LCS 배열: 길이를 구하여 저장한다. 
+	* 거꾸로 추적하며 문자열을 출력한다. (연속 증가부분수열과 같은 원리) 
+
 ```java
+import java.util.Scanner;
+
+public class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+
+    char[] A = sc.next().toCharArray();
+    char[] B = sc.next().toCharArray();
+    int[][] LCS = new int[A.length+1][B.length+1];
+    int x = A.length;
+    int y = B.length;
+    
+    // LCS를 DP를 통해 해결한다.
+    for(int i=1; i<=x; i++){
+      for(int j=1; j<=y; j++){
+        if(A[i-1] == B[j-1]){
+          LCS[i][j] = LCS[i-1][j-1]+1;
+        }
+        else{
+          LCS[i][j] = Math.max(LCS[i-1][j], LCS[i][j-1]);
+        }
+      }
+    }
+
+    System.out.println(LCS[x][y]);
+
+    StringBuilder sb = new StringBuilder();
+    while(!(x==0 || y ==0)){
+      if(A[x-1] == B[y-1]){ // 대각선으로 이동한다. 
+        sb.append(A[x-1]);
+        x--;y--;
+      }
+      else if(LCS[x][y] == LCS[x-1][y]){ // 같은 값이 있는 곳으로 이동한다. 
+        x--;
+      }
+      else if(LCS[x][y] == LCS[x][y-1]){ // 같은 값이 있는 곳으로 이동한다. 
+        y--;
+      }
+    }
+    System.out.println(sb.reverse().toString()); // 일치했던 문자열을 역순으로 출력한다. 
+  }
+}
+
+
+```
+
+// 아래의 코드는 런타임 에러가 발생했다... 왜 ? 이유 못찾음.
+```
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class test{
+  static int[][] memo = new int[1001][1001];
+  static char[] str1 = new char[1001];
+  static char[] str2 = new char[100];
+
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    str1 = br.readLine().toCharArray();
+    str2 = br.readLine().toCharArray();
+    int n = str1.length;
+    int m = str2.length;
+
+    System.out.println(getLCSLength(n,m));
+    System.out.println(getLcsStr(n,m));
+  }
+  public static int getLCSLength(int n, int m){
+    for (int i=1; i<=n; i++){
+      for(int j=1; j<=m; j++){
+        if(str1[i-1] == str2[i-1])
+          memo[i][j] = memo[i-1][j-1] +1;
+        else
+          memo[i][j] = Math.max(memo[i][j-1], memo[i-1][j]);
+      }
+    }
+    return memo[n][m];
+  }
+    public static String getLcsStr(int n, int m){
+      if(n==0 || m ==0){
+        return "";
+      } else if(str1[n-1] == str2[m-1]) {
+          return getLcsStr(n-1, m-1) + str1[n-1];
+      } else{
+        if(memo[n][m-1] > memo[n-1][m])
+          return getLcsStr(n, m-1);
+        else
+          return getLcsStr(n-1, m);
+      }
+    }
+  }
 
 
 ```
