@@ -299,6 +299,16 @@ public class test{
 	* bw.newLine(): 줄바꿈해준다.(\n 역할)
 	* bw.flush(); 현재 버퍼에 저장되어있는 내용을 모두 출력한다(클라이언트에게 전달하고 버퍼를 비운다.)
 	* bw.close(); 스트림을 닫는다. 
+2. sum 배열: 현재 파일까지의 총합을 저장한다. sum[0]=file[0]
+3. 이차원 배열 선언하는 동시에 0으로 기화된다.
+4. dp배열: dp[K][K] 만큼의 이차원 배열을 선언한다. i부터 j번째까지 파일을 합치는데 필요한 비용을 넣어준다. 
+	* i == j : 파일이 한 개라는 뜻이므로 0을 넣어준다. 
+	* dp[i][i+1] : 인접한 두 파일의 합을 넣어준다. dp[i][i+1] = file[i] + fil[i+1]
+	* i < k < j : dp[i][j] = Math.min(dp[i][k] + dp[k+1][j] + sumDist(sum, i, j))
+	* sumDist(int[] sum, int start, int end)
+	: 파일의 총 합을 구해놓은 sum 배열에서 , start와 end 사이의 파일들의 총 합을 구하는 함수이다. 
+	3- 5번 파일의 총 합을 구해놓는다. 
+i부터 j 번째까지 합치는 데 필요한 비용을 넣어준다.
 
 ```java
 import java.io.BufferedReader;
@@ -341,12 +351,12 @@ public class Main{
 
   static int solution(int[] file){
     int[][] dp = new int[file.length][file.length];
-    int[] sum = new int[file.length]; // sum 배열: 파일의 총합을 저장한다. 
+    int[] sum = new int[file.length]; 
 
     sum[0] = file[0];
 
     for(int i=1; i<sum.length;i++){
-      sum[i] = sum[i-1] + file[i];
+      sum[i] = sum[i-1] + file[i]; // sum 배열: 현재까지의 파일의 합을 구한다. 
     }
 
     for(int i=0; i<file.length-1; i++){
