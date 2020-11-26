@@ -47,6 +47,19 @@ for (int i=1; i<=n; i++)
 
 (미풀이)
 
+#### 8) [내리막길 1520]
+https://www.acmicpc.net/problem/1520
+
+#### 9) [외판원 순회 2098]
+https://www.acmicpc.net/problem/2098
+
+#### 10) [볼록껍질 Convex Hull 1708]
+컨벡스헐 알고리즘에 대한 공부 
+https://www.acmicpc.net/problem/1708
+
+#### 11) [팰린드롬? 10942]
+
+https://www.acmicpc.net/problem/10942
 
 
 
@@ -483,3 +496,19 @@ public class test{
 
 
 ```
+
+### 8. 내리막길 1520 
+* [백준 9252번 문제](https://www.acmicpc.net/problem/1520)
+
+### 9. 외판원 순회 2098 
+* [백준 9252번 문제](https://www.acmicpc.net/problem/2098)
+
+### 10. 볼록껍질 Convex Hull 1708 
+컨벡스헐 알고리즘에 대한 공부 
+* [백준 9252번 문제](https://www.acmicpc.net/problem/1708)
+
+### 11. 팰린드롬? 10942 
+* [백준 9252번 문제](https://www.acmicpc.net/problem/10942)
+
+
+
