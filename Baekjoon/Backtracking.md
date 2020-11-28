@@ -373,3 +373,20 @@ public class Main {
 }
 ```
 (다음턴에 도전) 연산자 끼워넣기 14888번
+
+
+### 5. 연산자 끼워넣기 
+
+* [연산자 끼워넣기 14888](https://www.acmicpc.net/problem/14888)
+
+### 6. 스타트와 링크
+
+* [스타트와 링크 14889](https://www.acmicpc.net/problem/14889)
+
+### 7. N x M 조건에 맞는 사람 
+
+* [조건에 맞는 사람 12번 15666](https://www.acmicpc.net/problem/15666)
+
+### 8. 알파벳  
+
+* [알파벳 1987](https://www.acmicpc.net/problem/1987)
