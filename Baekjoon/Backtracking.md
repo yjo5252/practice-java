@@ -383,15 +383,257 @@ public class Main {
 ### 5. 연산자 끼워넣기 
 
 * [연산자 끼워넣기 14888](https://www.acmicpc.net/problem/14888)
+```java
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+ 
+public class Main {
+ 
+	public static int MAX = Integer.MIN_VALUE;	// 최댓값 
+	public static int MIN = Integer.MAX_VALUE;	// 최솟값 
+	public static int[] operator = new int[4];	// 연산자 개수 
+	public static int[] number;					// 숫자 
+	public static int N;						// 숫자 개수 
+ 
+	public static void main(String[] args) throws IOException {
+ 
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ 
+		N = Integer.parseInt(br.readLine());
+		number = new int[N];
+ 
+		// 숫자 입력 
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		for (int i = 0; i < N; i++) {
+			number[i] = Integer.parseInt(st.nextToken());
+		}
+ 
+		// 연산자 입력 
+		st = new StringTokenizer(br.readLine(), " ");
+		for (int i = 0; i < 4; i++) {
+			operator[i] = Integer.parseInt(st.nextToken());
+		}
+ 
+		dfs(number[0], 1);
+ 
+		System.out.println(MAX);
+		System.out.println(MIN);
+ 
+	}
+ 
+	public static void dfs(int num, int idx) {
+		if (idx == N) {
+			MAX = Math.max(MAX, num);
+			MIN = Math.min(MIN, num);
+			return;
+		}
+ 
+		for (int i = 0; i < 4; i++) {
+			// 연산자 개수가 1개 이상인 경우
+			if (operator[i] > 0) {
+ 
+				// 해당 연산자를 1 감소시킨다.
+				operator[i]--;
+ 
+				switch (i) {
+ 
+				case 0:	dfs(num + number[idx], idx + 1);	break;
+				case 1:	dfs(num - number[idx], idx + 1);	break;
+				case 2:	dfs(num * number[idx], idx + 1);	break;
+				case 3:	dfs(num / number[idx], idx + 1);	break;
+ 
+				}
+				// 재귀호출이 종료되면 다시 해당 연산자 개수를 복구한다.
+				operator[i]++;
+			}
+		}
+	}
+ 
+}
 
+
+```
 ### 6. 스타트와 링크
 
 * [스타트와 링크 14889](https://www.acmicpc.net/problem/14889)
+```jaava
+import java.util.*;
+import java.io.*;
+ 
+// https://www.acmicpc.net/problem/14889
+ 
+class Main {
+    static int stoi(String s) { return Integer.parseInt(s); }
+ 
+    static int n;
+    static boolean[] visited;
+    static int[][] arr;
+    static int min = 987654321;
+ 
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+ 
+        n = stoi(br.readLine());
+        visited = new boolean[n+1];
+        arr = new int[n+1][n+1];
+ 
+        for(int i=1; i<n+1; i++) {
+            st = new StringTokenizer(br.readLine());
+            for(int j=1; j<n+1; j++) {
+                arr[i][j] = stoi(st.nextToken());
+            }
+        }
+ 
+        comb(1, 0);
+        System.out.println(min);
+    }
+ 
+    // 모든 팀의 조합 구하기
+    static void comb(int start, int depth) {
+        if(depth == n/2) {
+            min = Math.min(min, getAbilityDifference());
+            return;
+        }
+ 
+        for(int i=start; i<n+1; i++) {
+            if(visited[i] != true) {
+                visited[i] = true;
+                comb(i+1, depth+1);
+                visited[i] = false;
+            }
+        }
+    }
+ 
+    // 팀의 능력치 차이를 구하기
+    static int getAbilityDifference() {
+        int sumStart = 0;
+        int sumLink = 0;
+ 
+        for(int i=1; i<n+1; i++) {
+            for(int j=1; j<n+1; j++) {
+                // true 면 스타트팀
+                if(visited[i] && visited[j])
+                    sumStart += arr[i][j];
+ 
+                // false 면 링크팀
+                if(visited[i] != true && visited[j] != true)
+                    sumLink += arr[i][j];
+            }
+        }
+ 
+        return Math.abs(sumStart - sumLink);
+    }
+}
+
+```
 
 ### 7. N x M 조건에 맞는 사람 
 
 * [조건에 맞는 사람 12번 15666](https://www.acmicpc.net/problem/15666)
+```java
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class Main {
+	static int N, M;
+	static int[] visited = new int[10001];
+	static ArrayList<Integer> a;
+	static int[] input;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+		String[] temp = br.readLine().split(" ");// temp에 " "을 기준으로 String을 나눠 담음.
+		N = Integer.parseInt(temp[0]); // String을 int로 변환 후 담음.
+		M = Integer.parseInt(temp[1]);
+
+		input = new int[N];
+
+		temp = br.readLine().split(" ");
+		Set<Integer> s = new TreeSet<Integer>();
+		for (int i = 0; i < N; i++) {
+			int t = Integer.parseInt(temp[i]);
+			s.add(t); // TreeSet에 add
+			visited[t]++; // 각 번호에 맞게 카운트
+		}
+		a = new ArrayList<Integer>(s); // arraylist에 트리셋을 넣어줌.
+		dfs(0, bw, "", a.get(0));
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+
+	static void dfs(int depth, BufferedWriter bw, String str, int com) {
+		if (depth == M) {// 종료 지점.
+			try {
+				bw.write(str + "\n");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+		}
+
+		for (int i = 0; i < a.size(); i++) {
+			if (com <= a.get(i)) {
+				dfs(depth + 1, bw, str + a.get(i) + " ", a.get(i));
+			}
+		}
+	}
+}
+
+```
+
+
 
 ### 8. 알파벳  
 
 * [알파벳 1987](https://www.acmicpc.net/problem/1987)
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+public class Main {
+	static int r, c, max = 0;
+	static char[][] arr;
+	static boolean[] visit;
+	
+	private static void dfs(int x, int y, int d) {
+		int[] dx = {-1, 1, 0, 0}, dy = {0, 0, -1, 1}; // north, south, west, east
+		
+		visit[arr[x][y] - 'A'] = true;
+		for(int i = 0; i < 4; i++) {
+			int xx = x + dx[i], yy = y + dy[i];
+			
+			if(xx > 0 && yy > 0 && xx <= r && yy <= c) {
+				if(!visit[arr[xx][yy] - 'A']) dfs(xx, yy, d + 1);
+			}
+		}
+		visit[arr[x][y] - 'A'] = false;		
+		max = Math.max(max, d);
+	}
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] tmp = br.readLine().split("\\s");
+		r = Integer.parseInt(tmp[0]); c = Integer.parseInt(tmp[1]);
+		arr = new char[r+1][c+1]; visit = new boolean[26];
+		
+		for(int i = 1; i <= r; i++) {
+			String str = br.readLine();
+			for(int j = 1; j <= c; j++) arr[i][j] = str.charAt(j-1);
+		}
+		dfs(1, 1, 1); System.out.print(max);
+	}
+}
+
+```
