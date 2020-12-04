@@ -383,6 +383,12 @@ public class Main {
 ### 5. 연산자 끼워넣기 
 
 * [연산자 끼워넣기 14888](https://www.acmicpc.net/problem/14888)
+* N개의 숫자, N-1개의 연산자 => 식의 결과가 최대인 것과 최소인 것을 구하는 문제 
+* 연산자 배열은 덧셈(+), 뺄셈(-), 곱셈(x), 나눗셈 (/) 순서로 입력한다. => 재귀함수 호출 전후로 operator값 --(뺄셈), ++ (복귀)한다. 
+* 
+```StingTokenizer st = new StringTokenizer(br.readLine(), " ");
+   number[i] = Integer.pareInt(st.nextToken());
+ ```
 ```java
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -458,6 +464,9 @@ public class Main {
 ### 6. 스타트와 링크
 
 * [스타트와 링크 14889](https://www.acmicpc.net/problem/14889)
+* 완전탐색 방식 
+* Sij = i와 j가 팀일 때 팀이 더해지는 능력치, 스타트 팀과 링크 팀의 능력치의 차이의 최솟값
+* Sij와 Sji는 값이 다를 수 있으며, i번 사람과 j번 사람이 같은 팀일 때 더해지는 능력치는 Sij + Sji이다.
 ```jaava
 import java.util.*;
 import java.io.*;
@@ -533,6 +542,12 @@ class Main {
 ### 7. N x M 조건에 맞는 사람 
 
 * [조건에 맞는 사람 12번 15666](https://www.acmicpc.net/problem/15666)
+* TreeSet : 
+레드블랙트리 - 부모노드보다 작은값을 가지는 노드는 왼쪽 자식으로, 큰 값을 가지는 노드는 오른쪽 자식으로 배치하여 데이터의 추가나 삭제 시 트리가 한쪽으로 치우쳐지지 않도록 균형을 마춘다.
+* add(value) 메소드를 사용하면 됩니다. 입력되는 값이 TreeSet 내부에 존재하지 않는다면 그 값을 추가한 뒤 true를 반환하고 내부에 값이 존재한다면 false를 반환합니다.
+* remove(value) 메소드를 사용하면 됩니다. 매개변수 value의 값이 존재한다면 그 값을 삭제한 후 true를 반환하고 없으면 false를 반환합니다. 모든 값을 제거하려면 clear() 메서드를 사용하면 됩니다.
+* BufferedWriter bw -> flush() : 현재 버퍼에 저장되어 있는 내용을 클라이언트로 전송하고 버퍼를 비운다.
+
 ```java
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
